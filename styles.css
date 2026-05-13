@@ -1,0 +1,164 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Georgia, serif;
+  color: #fff;
+  background: #0a0a0a;
+}
+
+/* NAV */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background: #111;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+nav .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #f0a500;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+nav ul a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+nav ul a:hover {
+  color: #f0a500;
+}
+
+/* SECTIONS */
+section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 60px 20px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* HERO */
+#hero {
+  background: linear-gradient(135deg, #0a0a0a, #1a1a2e);
+}
+
+#hero h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #f0a500;
+}
+
+#hero p {
+  font-size: 1.3rem;
+  margin-bottom: 30px;
+}
+
+/* ABOUT */
+#about {
+  background: #111827;
+}
+
+#about h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #f0a500;
+}
+
+#about p {
+  font-size: 1.2rem;
+  max-width: 600px;
+}
+
+/* SERVICES */
+#services {
+  background: #0a0a0a;
+}
+
+#services h2 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: #f0a500;
+}
+
+.cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  background: #1a1a2e;
+  padding: 30px 40px;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  border: 1px solid #f0a500;
+  transition: transform 0.3s, background 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  background: #f0a500;
+  color: #000;
+}
+
+/* CONTACT */
+#contact {
+  background: #111827;
+}
+
+#contact h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #f0a500;
+}
+
+#contact p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+/* BUTTON */
+.btn {
+  padding: 14px 35px;
+  background: #f0a500;
+  color: #000;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.btn:hover {
+  background: #fff;
+  transform: scale(1.05);
+}
