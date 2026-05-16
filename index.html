@@ -2,52 +2,339 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Animated Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SMX Marketing Agency — Ecommerce Growth Partner</title>
   <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
 </head>
 <body>
+  <canvas id="bg-canvas"></canvas>
 
-  <!-- NAVIGATION -->
-  <nav>
-    <div class="logo">Smxmarketingagency </div>
+  <!-- ANIMATED BACKGROUND -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <div class="wrap nav-inner">
+      <a href="/" class="logo">
+        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/4QLaRXhpZgAATU0AKgAAAAgABAE7AAIAAAAFAAABSodpAAQAAAABAAABUJydAAEAAAAKAAACyOocAAcAAAEMAAAAPgAAAAAc6gAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAVVNFUgAAAAWQAwACAAAAFAAAAp6QBAACAAAAFAAAArKSkQACAAAAAzU4AACSkgACAAAAAzU4AADqHAAHAAABDAAAAZIAAAAAHOoAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADIwMjY6MDU6MTUgMjA6MTk6MjQAMjAyNjowNToxNSAyMDoxOToyNAAAAFUAUwBFAFIAAAD/4QQXaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49J++7vycgaWQ9J1c1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCc/Pg0KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyI+PHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj48cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0idXVpZDpmYWY1YmRkNS1iYTNkLTExZGEtYWQzMS1kMzNkNzUxODJmMWIiIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIvPjxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSJ1dWlkOmZhZjViZGQ1LWJhM2QtMTFkYS1hZDMxLWQzM2Q3NTE4MmYxYiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIj48eG1wOkNyZWF0ZURhdGU+MjAyNi0wNS0xNVQyMDoxOToyNC41ODI8L3htcDpDcmVhdGVEYXRlPjwvcmRmOkRlc2NyaXB0aW9uPjxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSJ1dWlkOmZhZjViZGQ1LWJhM2QtMTFkYS1hZDMxLWQzM2Q3NTE4MmYxYiIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIj48ZGM6Y3JlYXRvcj48cmRmOlNlcSB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPjxyZGY6bGk+VVNFUjwvcmRmOmxpPjwvcmRmOlNlcT4NCgkJCTwvZGM6Y3JlYXRvcj48L3JkZjpEZXNjcmlwdGlvbj48L3JkZjpSREY+PC94OnhtcG1ldGE+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPD94cGFja2V0IGVuZD0ndyc/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" alt="SMX Marketing Agency" class="nav-logo" style="height:48px;width:auto;" />
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#results">Results</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact" class="nav-cta">Work with us</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
     <ul>
-      <li><a href="#hero">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#services" class="mob-link">Services</a></li>
+      <li><a href="#results" class="mob-link">Results</a></li>
+      <li><a href="#about" class="mob-link">About</a></li>
+      <li><a href="#contact" class="mob-link">Work with us</a></li>
     </ul>
-  </nav>
+  </div>
 
-  <!-- HERO SECTION -->
-  <section id="hero">
-    <h1>Welcome to My Website</h1>
-    <p>Beautiful animations, clean design.</p>
-    <a href="#about" class="btn">Get Started</a>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-badge">Ecommerce Growth Agency</div>
+      <h1 class="hero-title">We Scale<br><span>Ecommerce</span><br>Brands.</h1>
+      <p class="hero-sub">SMX helps online stores grow revenue through paid ads, SEO, email marketing, and conversion optimization — all under one roof.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Get a free audit</a>
+        <a href="#results" class="btn btn-ghost">See our results</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat">
+          <div class="hstat-num">$12M+</div>
+          <div class="hstat-label">Revenue generated</div>
+        </div>
+        <div class="hstat-divider"></div>
+        <div class="hstat">
+          <div class="hstat-num">80+</div>
+          <div class="hstat-label">Stores scaled</div>
+        </div>
+        <div class="hstat-divider"></div>
+        <div class="hstat">
+          <div class="hstat-num">4.8×</div>
+          <div class="hstat-label">Avg. ROAS</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-bg-text" aria-hidden="true">SMX</div>
   </section>
 
-  <!-- ABOUT SECTION -->
-  <section id="about">
-    <h2>About Me</h2>
-    <p>I am a creative developer building amazing web experiences.</p>
-  </section>
+  <!-- TICKER -->
+  <div class="ticker-wrap">
+    <div class="ticker">
+      <span>Paid Ads</span><span class="dot">✦</span>
+      <span>Email Marketing</span><span class="dot">✦</span>
+      <span>SEO</span><span class="dot">✦</span>
+      <span>Conversion Rate Optimisation</span><span class="dot">✦</span>
+      <span>Social Media</span><span class="dot">✦</span>
+      <span>Shopify Development</span><span class="dot">✦</span>
+      <span>Google Shopping</span><span class="dot">✦</span>
+      <span>Analytics & Reporting</span><span class="dot">✦</span>
+      <span>Paid Ads</span><span class="dot">✦</span>
+      <span>Email Marketing</span><span class="dot">✦</span>
+      <span>SEO</span><span class="dot">✦</span>
+      <span>Conversion Rate Optimisation</span><span class="dot">✦</span>
+      <span>Social Media</span><span class="dot">✦</span>
+      <span>Shopify Development</span><span class="dot">✦</span>
+      <span>Google Shopping</span><span class="dot">✦</span>
+      <span>Analytics & Reporting</span><span class="dot">✦</span>
+    </div>
+  </div>
 
-  <!-- SERVICES SECTION -->
-  <section id="services">
-    <h2>My Services</h2>
-    <div class="cards">
-      <div class="card">🎨 Web Design</div>
-      <div class="card">💻 Development</div>
-      <div class="card">📱 Mobile Apps</div>
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="sec-label">What we do</p>
+        <h2 class="sec-title">Everything your store needs<br>to grow — and scale.</h2>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">01</div>
+          <h3>Paid Advertising</h3>
+          <p>Meta, Google, TikTok — we run high-converting ad campaigns that bring the right buyers to your store at the right time.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">02</div>
+          <h3>Email & SMS Marketing</h3>
+          <p>Turn your list into a revenue machine. We build automated flows and campaigns that recover carts, retain customers, and drive repeat purchases.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">03</div>
+          <h3>SEO & Content</h3>
+          <p>Rank for the keywords your buyers are searching. We build organic traffic that compounds over time and reduces ad dependency.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">04</div>
+          <h3>CRO & Store Optimisation</h3>
+          <p>More traffic only works if your store converts. We audit, test, and optimise your pages so every visit has a better chance of turning into a sale.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">05</div>
+          <h3>Shopify Development</h3>
+          <p>Custom storefronts, theme tweaks, speed optimisation, and app integrations — built to convert and built to last.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">06</div>
+          <h3>Analytics & Reporting</h3>
+          <p>No guesswork. We set up clear dashboards and deliver monthly reports so you always know what's working and where to invest next.</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- CONTACT SECTION -->
-  <section id="contact">
-    <h2>Contact Me</h2>
-    <p>Email: hello@mybrand.com</p>
-    <a href="mailto:hello@mybrand.com" class="btn">Send Message</a>
+  <!-- RESULTS -->
+  <section class="results" id="results">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="sec-label">Case studies</p>
+        <h2 class="sec-title">Real results for<br>real ecommerce brands.</h2>
+      </div>
+      <div class="results-grid">
+        <div class="result-card">
+          <div class="result-tag">Fashion — Shopify</div>
+          <h3 class="result-brand">Brand A</h3>
+          <p class="result-desc">Scaled from $30K to $180K/month in 6 months using Meta ads and email automation.</p>
+          <div class="result-metrics">
+            <div class="metric">
+              <div class="metric-val">+500%</div>
+              <div class="metric-key">Revenue growth</div>
+            </div>
+            <div class="metric">
+              <div class="metric-val">5.2×</div>
+              <div class="metric-key">ROAS</div>
+            </div>
+          </div>
+        </div>
+        <div class="result-card">
+          <div class="result-tag">Beauty — WooCommerce</div>
+          <h3 class="result-brand">Brand B</h3>
+          <p class="result-desc">Rebuilt their Google Shopping campaigns and tripled organic traffic within 4 months.</p>
+          <div class="result-metrics">
+            <div class="metric">
+              <div class="metric-val">3×</div>
+              <div class="metric-key">Organic traffic</div>
+            </div>
+            <div class="metric">
+              <div class="metric-val">42%</div>
+              <div class="metric-key">Lower CAC</div>
+            </div>
+          </div>
+        </div>
+        <div class="result-card">
+          <div class="result-tag">Home & Living — Shopify</div>
+          <h3 class="result-brand">Brand C</h3>
+          <p class="result-desc">Email flows alone generated $60K in the first 90 days after a full Klaviyo rebuild.</p>
+          <div class="result-metrics">
+            <div class="metric">
+              <div class="metric-val">$60K</div>
+              <div class="metric-key">Email revenue (90 days)</div>
+            </div>
+            <div class="metric">
+              <div class="metric-val">38%</div>
+              <div class="metric-key">Open rate</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="wrap about-grid">
+      <div class="about-text">
+        <p class="sec-label">About SMX</p>
+        <h2 class="sec-title">We're not a generalist agency.<br>Ecommerce is all we do.</h2>
+        <p>SMX Marketing Agency was built specifically for ecommerce brands. Every strategy we run, every tool we use, every hire we make — it's all optimised for online stores.</p>
+        <p>We work as an extension of your team, not just a vendor. You get a dedicated team who understands your products, your customers, and your goals.</p>
+        <a href="#contact" class="btn btn-primary" style="margin-top:2rem;display:inline-block">Let's talk</a>
+      </div>
+      <div class="about-right">
+        <div class="about-card">
+          <p class="about-card-quote">"SMX helped us go from barely breaking even to our first six-figure month — in under a year."</p>
+          <div class="about-card-author">
+            <div class="author-avatar">JD</div>
+            <div>
+              <div class="author-name">Jane Doe</div>
+              <div class="author-role">Founder, Brand A</div>
+            </div>
+          </div>
+        </div>
+        <div class="about-values">
+          <div class="value"><span>✦</span> Data-driven, not guesswork</div>
+          <div class="value"><span>✦</span> Transparent reporting</div>
+          <div class="value"><span>✦</span> Performance-focused</div>
+          <div class="value"><span>✦</span> Ecommerce specialists only</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO REVIEWS -->
+  <section class="video-reviews" id="video-reviews">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="sec-label">Client video reviews</p>
+        <h2 class="sec-title">Hear it straight<br>from our clients.</h2>
+      </div>
+      <div class="video-reviews-grid">
+        <div class="video-review-card">
+          <iframe
+            src="https://www.youtube.com/embed/zyHUIaZxf64"
+            title="Client Review 1"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="video-review-card">
+          <iframe
+            src="https://www.youtube.com/embed/FkpUkXlslQc"
+            title="Client Review 2"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="testimonials">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="sec-label">Client love</p>
+        <h2 class="sec-title">Don't just take<br>our word for it.</h2>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote">"Before SMX, we were burning money on ads with no real strategy. Within 3 months they completely turned it around. Our ROAS went from 1.2x to 4.8x."</p>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote">"The email flows they built for us made $40K in the first 60 days. We had no idea our list was worth that much. Absolute game changer."</p>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote">"SMX rebuilt our Shopify store from the ground up. Page speed, UX, checkout — everything improved. Our conversion rate doubled in 6 weeks."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="wrap contact-inner">
+      <p class="sec-label">Get started</p>
+      <h2 class="contact-title">Ready to grow<br>your store?</h2>
+      <p class="contact-sub">Book a free 30-minute audit. We'll review your store, your ads, and your email setup — and tell you exactly where the opportunities are.</p>
+      <form class="contact-form" id="contactForm">
+        <div class="form-row">
+          <input type="text" placeholder="Your name" required />
+          <input type="email" placeholder="Email address" required />
+        </div>
+        <input type="url" placeholder="Your store URL (e.g. yourstore.com)" />
+        <select>
+          <option value="" disabled selected>Monthly revenue range</option>
+          <option>Under $10K/month</option>
+          <option>$10K – $50K/month</option>
+          <option>$50K – $200K/month</option>
+          <option>$200K+/month</option>
+        </select>
+        <textarea rows="4" placeholder="Tell us a bit about your goals..."></textarea>
+        <button type="submit" class="btn btn-primary">Book my free audit →</button>
+      </form>
+      <p class="contact-note">No commitment. No sales pressure. Just honest advice.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <div class="footer-brand">
+        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/4QLaRXhpZgAATU0AKgAAAAgABAE7AAIAAAAFAAABSodpAAQAAAABAAABUJydAAEAAAAKAAACyOocAAcAAAEMAAAAPgAAAAAc6gAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAVVNFUgAAAAWQAwACAAAAFAAAAp6QBAACAAAAFAAAArKSkQACAAAAAzU4AACSkgACAAAAAzU4AADqHAAHAAABDAAAAZIAAAAAHOoAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADIwMjY6MDU6MTUgMjA6MTk6MjQAMjAyNjowNToxNSAyMDoxOToyNAAAAFUAUwBFAFIAAAD/4QQXaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49J++7vycgaWQ9J1c1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCc/Pg0KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyI+PHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj48cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0idXVpZDpmYWY1YmRkNS1iYTNkLTExZGEtYWQzMS1kMzNkNzUxODJmMWIiIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIvPjxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSJ1dWlkOmZhZjViZGQ1LWJhM2QtMTFkYS1hZDMxLWQzM2Q3NTE4MmYxYiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIj48eG1wOkNyZWF0ZURhdGU+MjAyNi0wNS0xNVQyMDoxOToyNC41ODI8L3htcDpDcmVhdGVEYXRlPjwvcmRmOkRlc2NyaXB0aW9uPjxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSJ1dWlkOmZhZjViZGQ1LWJhM2QtMTFkYS1hZDMxLWQzM2Q3NTE4MmYxYiIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIj48ZGM6Y3JlYXRvcj48cmRmOlNlcSB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPjxyZGY6bGk+VVNFUjwvcmRmOmxpPjwvcmRmOlNlcT4NCgkJCTwvZGM6Y3JlYXRvcj48L3JkZjpEZXNjcmlwdGlvbj48L3JkZjpSREY+PC94OnhtcG1ldGE+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPD94cGFja2V0IGVuZD0ndyc/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" alt="SMX Marketing Agency" class="nav-logo" style="height:40px;width:auto;margin-bottom:0.5rem;" />
+        <p>Ecommerce growth, done right.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#services">Services</a>
+        <a href="#results">Results</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-copy">© 2025 SMX Marketing Agency. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP BUTTON -->
+  <a
+    href="https://wa.me/+14082212327?text=Hi%20SMX%2C%20I%27d%20like%20a%20free%20audit%20for%20my%20store."
+    class="whatsapp-btn"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Chat with us on WhatsApp"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+    <span class="wa-label">Chat with us</span>
+  </a>
 
   <script src="script.js"></script>
 </body>
